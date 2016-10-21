@@ -1,0 +1,175 @@
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usetheme{Pittsburgh}
+
+\definecolor{maincs}{RGB}{255,0,0}
+\definecolor{secondarycs}{RGB}{255,179,246}
+
+\lstset{
+    language=[LaTeX]TeX,
+    xleftmargin=2cm,
+    escapeinside={*@}{@*},
+    basicstyle=\ttfamily\small,
+    columns=fullflexible,
+    breaklines=true,
+    texcsstyle=*\color{maincs},
+    texcs={documentclass,begin,end,chapter,section,subsection,label,alpha,part},
+    moretexcs=[2]{usepackage,input},
+    texcsstyle=*[2]{\color{secondarycs!80!black}},
+}
+
+\beamertemplatenavigationsymbolsempty
+\title{A presentation in \LaTeX\ Beamer on \LaTeX\ Beamer}
+\author{Caleb Jhones}
+\date{20 October 2016}
+
+\begin{document}
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Tabular}
+\begin{itemize}
+    \item Use the \texttt{tabular} environment
+        \begin{itemize}
+        \item \verb+&+ acts as an alignment character, and \verb+\\+ acts as a newline
+        \end{itemize}
+    \pause
+    \item In order to get a table like this: \\
+        \begin{table}
+        \centering
+        \begin{tabular}{ |c|c| }
+        \hline
+        stuff & stuff \\ \hline
+        stuff & stuff \\
+        \hline
+        \end{tabular}
+        \end{table}
+    \pause
+    \item Use code that looks like this:
+    \begin{lstlisting}
+    \begin{tabular}{ |c|c| }
+    \hline
+    stuff & stuff \\ \hline
+    stuff & stuff \\
+    \hline
+    \end{tabular}
+    \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Graphicx}
+\begin{itemize}
+    \item To enable including pictures, include \texttt{graphicx} in your preamble:
+    \begin{lstlisting}
+    \usepackage{graphicx}
+    \end{lstlisting}
+    Then in the body of your document:
+    \begin{lstlisting}
+    \includegraphics[width=4cm]{pic.png}
+    \end{lstlisting}
+    where the argument(s) and file extension are optional
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{What is \texttt{beamer}?}
+\begin{itemize}
+    \item So you've taken what Nick said to heart. But how do you get pretty slides like those that he used???
+    \pause
+    \item The answer is to use \texttt{beamer}! It uses all of the same sorts of syntax (for math, tables, pictures, etc.), and includes control
+sequences for making bullet points, slides, et al.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{The basics}
+\begin{itemize}
+    \item When beginning your \texttt{.tex} document, use the \texttt{beamer} document class to have access to the slideshow-specific control sequences
+    \pause
+    \item You will also want to chose a theme by typing \verb+\usetheme{theme goes here}+ after the \verb+\usepackage+ section
+    \begin{itemize}
+        \item I personally prefer the \texttt{Pittsburgh} theme, but others around LUG like \texttt{Luebeck}, \texttt{Rochester}, \texttt{Metropolis}, and others. Ask around or run a quick search to find one you like
+    \end{itemize}
+    \pause
+    \item Each slide is within the \texttt{frame} environment, and you give slides titles by calling \verb+\frametitle{Title goes here}+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Title slide}
+\begin{itemize}
+    \item A good slideshow needs a titlepage, so we use the \verb+\maketitle+ command for this. It is placed in its own \texttt{frame} like so:
+    \begin{lstlisting}
+    \begin{frame}
+        \maketitle
+    \end{frame}
+    \end{lstlisting}
+    \pause
+    \item This title slide gets its info from the \texttt{title}, \texttt{author}, \texttt{date}, etc fields:
+    \begin{lstlisting}
+    \title{Clever title}
+    \author{John Smith}
+    \date{7 February 1941}
+    \end{lstlisting} %leslie lanport's birthday
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Bullet points}
+\begin{itemize}
+    \item Use the \texttt{itemize} control sequence just like in any other \LaTeX\ document
+    \pause
+    \item To get pauses between different bullet points within a slide, use the \verb+\pause+ control sequence between \verb+\item+s
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Graphics and tables}
+\begin{itemize}
+    \item Graphics are easy! Just use the \texttt{graphicx} package already mentioned
+    \pause
+    \item Tables are equally easy to use--also refer to the section above
+    \pause
+    \item For graphics and tables, use \verb+\caption{Cool caption}+ to add captions
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{"Full" example}
+\begin{lstlisting}
+\documentclass{beamer}
+\usetheme{Pittsburgh}
+
+\begin{document}
+    % Title slide would go here
+    \begin{frame}
+    \frametitle{My first slide!}
+    \begin{itemize}
+        \item A bullet point
+        \pause
+        \item Another one!
+    \end{itemize}
+\end{document}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Take-aways and questions}
+\begin{itemize}
+    \item \texttt{beamer} is very easy to use: it adds small amounts of functionality to what you will become used to in \LaTeX\ to allow you to make slides
+    \pause
+    \item If you need an example, look to the source of most of the presentations on \texttt{lug.mines.edu}
+    \pause
+    \begin{figure}
+    \centering
+    \includegraphics[width=6cm]{tex-lion}
+    \end{figure}
+\end{itemize}
+\end{frame}
+
+\end{document}
